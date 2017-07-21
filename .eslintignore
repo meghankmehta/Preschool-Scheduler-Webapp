@@ -1,0 +1,6 @@
+api/responses
+assets/js/dependencies
+config/
+tasks/
+app.js
+Gruntfile.js

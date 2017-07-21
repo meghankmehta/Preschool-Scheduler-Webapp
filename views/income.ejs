@@ -1,0 +1,40 @@
+<%- partial('partials/nav.ejs', {location: 'income'}) %>
+
+<% var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+	'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; %>
+
+<div class="container">
+	<h1><%= year %>/<%= year+1 %></h1>
+	<div class="row">
+		<table class="table table-bordered table-striped" id="incomeCalendar">
+			<thead>
+				<tr>
+					<% for (var i = 0; i < months.length; i++) { %>
+						<th><%= months[i] %></th>
+					<% } %>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody align="left">
+				<tr>
+					<% for (var i = 0; i < months.length; i++) { %>
+						<td><%= monthlyIncome[i] %></td>
+					<% } %>
+					<td><%= totalIncome %></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="container">
+			<ul class="pager">
+				<li class="previous"><a href="?year=<%= year-1 %>">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+					<%= year-1 %>/<%= year %>
+				</a></li>
+				<li class="next"><a href="?year=<%= year+1 %>">
+					<%= year+1 %>/<%= year+2 %>
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</a></li>
+			</ul>
+		</div>
+	</div>
+</div>

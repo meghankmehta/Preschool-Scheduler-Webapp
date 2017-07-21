@@ -1,0 +1,66 @@
+<%- partial('partials/nav.ejs', {location: 'addtimeperiod'}) %>
+
+<div class="container">
+	<% if (noRateSchedules) { %>
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+			There are no existing rate schedules in the database. You will not 
+			be able to add a new time period until a rate schedule has been created.
+        </div>
+    <% } %>
+	<h1>New Time Period</h1>
+
+<div class="form-group">
+	<div>
+		<form class="add-form" onsubmit="addTimePeriod('<%= student.id %>', <%= noRateSchedules %>); return false;">
+			<div class="form-group">
+				<label for="add-period-start-date">Start Date * (YYYY-MM-DD)</label>
+				<input class="form-control" type="date" id="add-period-start-date" required>
+				<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+				<font color="#a94442">
+					<div id="add-period-start-date-message-misordered" style="display: none;">
+						Start date must be after end date.
+					</div>
+					<div id="add-period-start-date-message-overlap" style="display: none;">
+						This time period overlaps with a period this student is already signed up for.
+					</div>
+				</font>
+			</div>
+			<div class="form-group">
+				<label for="add-period-end-date">End Date * (YYYY-MM-DD)</label>
+				<input class="form-control" type="date" id="add-period-end-date" required>
+				<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+				<font color="#a94442">
+					<div id="add-period-end-date-message-misordered" style="display: none;">
+						End date must be before start date.
+					</div>
+					<div id="add-period-end-date-message-overlap" style="display: none;">
+						This time period overlaps with a period this student is already signed up for.
+					</div>
+				</font>
+			</div>
+			<div class="form-group">
+				<label for="add-period-rate-schedules">Rate Schedule *</label>
+				<select id="add-period-rate-schedules">
+					<% for (var i = 0; i < rateSchedules.length; i++) { %>
+						<option value="<%= rateSchedules[i].id %>"><%= rateSchedules[i].name %></option>
+					<% } %>
+				</select>
+				<font color="#a94442">
+					<div id="add-period-rate-schedules-message" style="display: none;">
+						No rate schedule selected.
+					</div>
+				</font>
+			</div>
+			<div class="form-group">
+				<label for="add-period-asas">After School Activities</label>
+				<select id="add-period-asas" multiple="multiple">
+					<% for (var i = 0; i < afterSchoolActivities.length; i++) { %>
+						<option value="<%= afterSchoolActivities[i].id %>"><%= afterSchoolActivities[i].name %></option>
+					<% } %>
+				</select>
+			</div>
+			<button class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>

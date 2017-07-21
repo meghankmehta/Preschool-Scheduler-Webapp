@@ -1,0 +1,53 @@
+<%- partial('partials/nav.ejs', {location: 'addrateschedule'}) %>
+
+<% var days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'] %>
+<% var dayOptions = ['none', 'am', 'pm', 'full'] %>
+
+<div class="container">
+	<h1>New Rate Schedule</h1>
+
+	<div align="left">
+		<form class="add-form" onsubmit="if (validateRSForm()) createRateSchedule(); return false;">
+			<div class="form-group">
+				<label for="add-rs-name">Name *</label>
+				<input type="text" class="form-control" id="add-rs-name" required>
+			</div>
+			<div class="form-group">
+				<label for="add-rs-cost">Cost ($) *</label>
+				<input type="text" class="form-control" id="add-rs-cost" required>
+				<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+				<div id="add-rs-cost-message" style="display: none;">
+					<font color="#a94442">
+						Please enter a valid number. Ex: 1000
+					</font>
+				</div>
+			</div>
+			<table class="table table-bordered table-striped">
+				<thead>
+					<% for(var i = 0; i < days.length; i++) { %>
+						<th><%= days[i].charAt(0).toUpperCase()+days[i].slice(1) %></th>
+					<% } %>
+				</thead>
+			   <tbody align="left">
+					<tr>
+						<% for(var i = 0; i < days.length; i++) { %>
+							<td>
+								<fieldset class="form-group">
+                  <% for(var j = 0; j < dayOptions.length; j++) { %>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="add-rs-options-<%= days[i] %>" value="<%= dayOptions[j] %>" <%= j === 0 ? 'checked' : '' %> >
+                        <%= dayOptions[j] %>
+                      </label>
+                    </div>
+                  <% } %>
+								</fieldset>
+							</td>
+						<% } %>
+					</tr>
+				</tbody>
+			</table>
+			<button class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>

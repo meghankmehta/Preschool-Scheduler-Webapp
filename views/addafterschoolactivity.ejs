@@ -1,0 +1,49 @@
+<%- partial('partials/nav.ejs', {location: 'addafterschoolactivity'}) %>
+
+<% var days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'] %>
+
+<div class="container">
+	<h1>New After School Activity</h1>
+
+	<div align="left">
+		<form class="add-form" onsubmit="if (validateASAForm()) createAfterSchoolActivity(); return false;">
+			<div class="form-group">
+				<label for="add-asa-name">Name *</label>
+				<input type="text" class="form-control" id="add-asa-name" required>
+			</div>
+			<div class="form-group">
+				<label for="add-asa-cost">Cost ($) *</label>
+				<input type="text" class="form-control" id="add-asa-cost" required>
+				<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+				<div id="add-asa-cost-message" style="display: none;">
+					<font color="#a94442">
+						Please enter a valid number. Ex: 1000
+					</font>
+				</div>
+			</div>
+			<table class="table table-bordered table-striped">
+				<thead>
+					<% for(var i = 0; i < days.length; i++) { %>
+						<th><%= days[i].charAt(0).toUpperCase()+days[i].slice(1) %></th>
+					<% } %>
+				</thead>
+			   <tbody align="left">
+					<tr>
+						<% for(var i = 0; i < days.length; i++) { %>
+							<td>
+								<fieldset class="form-group">
+									<div class="form-check">
+										<label class="form-check-label">
+											<input type="checkbox" class="form-check-input" name="add-asa-options-<%= days[i] %>">
+										</label>
+									</div>
+								</fieldset>
+							</td>
+						<% } %>
+					</tr>
+				</tbody>
+			</table>
+			<button class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>

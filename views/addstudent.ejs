@@ -1,0 +1,43 @@
+<%- partial('partials/nav.ejs', {location: 'addstudent'}) %>
+
+<div class="container">
+	<h1>New Student</h1>
+
+	<div>
+		<form class="add-form" onsubmit="addStudent(); return false;">
+			<div class="form-group">
+				<label for="add-student-name">Name *</label>
+				<input type="text" required class="form-control" id="add-student-name" >
+			</div>
+			<div class="form-group">
+				<label for="add-student-birth-date">Birthday *</label>
+				<input class="form-control" type="date" id="add-student-birth-date" required>
+			</div>
+			<div class="form-group">
+				<label for="add-student-parent-name1">Parent/Guardian 1 *</label>
+				<input type="text" class="form-control" id="add-student-parent-name-1" required>
+			</div>
+			<div class="form-group">
+				<label for="add-student-parent-name2">Parent/Guardian 2</label>
+				<input type="text" class="form-control" id="add-student-parent-name-2">
+			</div>
+			<div class="form-group">
+				<label for="add-student-parent-phone1">Phone Number *</label>
+				<input type="text" class="form-control" id="add-student-parent-phone-1" required>
+			</div>
+			<div class="form-group">
+				<label for="add-student-parent-phone2">Alternate Phone Number</label>
+				<input type="text" class="form-control" id="add-student-parent-phone-2">
+			</div>
+			<div class="form-group">
+				<label for="add-student-physician-name">Physician Name *</label>
+				<input type="text" class="form-control" id="add-student-physician-name" required>
+			</div>
+			<div class="form-group">
+				<label for="add-student-physician-phone">Physician Phone Number *</label>
+				<input type="text" class="form-control" id="add-student-physician-phone" required>
+			</div>
+			<button class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>
